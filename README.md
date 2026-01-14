@@ -11,7 +11,7 @@ Records for frequent package and dependencies whl. Playing with [New Low](https:
 
 ### OpenAI API client
 
-* dependencies whl: [readme](openai-packages/README.md)
+* dependencies whl: [readme](source/openai-packages/README.md)
 
 ```sh
 uv run --with pip python -m pip download openai litellm cohere \
@@ -24,7 +24,7 @@ uv run --with pip python -m pip download openai litellm cohere \
 
 ### Lancedb
 
-* dependencies whl: [readme](lancedb-packages/README.md)
+* dependencies whl: [readme](source/lancedb-packages/README.md)
 
 ```sh
 uv run --with pip python -m pip download lancedb pylance duckdb pandas \
@@ -37,7 +37,7 @@ uv run --with pip python -m pip download lancedb pylance duckdb pandas \
 
 ### PyTorch
 
-* dependencies whl: [readme](torch-packages/README.md)
+* dependencies whl: [readme](source/torch-packages/README.md)
 
 ```sh
 uv run --with pip python -m pip download torch torchvision \
@@ -50,7 +50,7 @@ uv run --with pip python -m pip download torch torchvision \
 
 ### PyTorch (CUDA 12.8)
 
-* dependencies whl: [readme](torch-cu128-packages/README.md)
+* dependencies whl: [readme](source/torch-cu128-packages/README.md)
 
 ```sh
 uv run --with pip python -m pip download torch torchvision \    
@@ -64,7 +64,7 @@ uv run --with pip python -m pip download torch torchvision \
 
 ### Transformers
 
-* dependencies whl: [readme](transformers-packages/README.md)
+* dependencies whl: [readme](source/transformers-packages/README.md)
 
 ```sh
 uv run --with pip python -m pip download transformers sentence-transformers fastembed datasets \
@@ -77,7 +77,7 @@ uv run --with pip python -m pip download transformers sentence-transformers fast
 
 ### FastAPI
 
-* dependencies whl: [readme](fastapi-packages/README.md)
+* dependencies whl: [readme](source/fastapi-packages/README.md)
 
 ```sh
 uv run --with pip python -m pip download fastapi fastmcp uvicorn \
@@ -90,7 +90,7 @@ uv run --with pip python -m pip download fastapi fastmcp uvicorn \
 
 ### gRPC
 
-* dependencies whl: [readme](grpc-packages/README.md)
+* dependencies whl: [readme](source/grpc-packages/README.md)
 
 ```sh
 uv run --with pip python -m pip download grpcio grpcio-tools \
@@ -103,7 +103,7 @@ uv run --with pip python -m pip download grpcio grpcio-tools \
 
 ### Llama Index
 
-* dependencies whl: [readme](llama-index-packages/README.md)
+* dependencies whl: [readme](source/llama-index-packages/README.md)
 
 ```sh
 uv run --with pip python -m pip download llama-index \
@@ -116,7 +116,7 @@ uv run --with pip python -m pip download llama-index \
 
 ### LangChain
 
-* dependencies whl: [readme](langchain-packages/README.md)
+* dependencies whl: [readme](source/langchain-packages/README.md)
 
 ```sh
 uv run --with pip python -m pip download langchain langgraph \
@@ -129,7 +129,7 @@ uv run --with pip python -m pip download langchain langgraph \
 
 ### Google ADK
 
-* dependencies whl: [readme](google-adk-packages/README.md)
+* dependencies whl: [readme](source/google-adk-packages/README.md)
 
 ```sh
 uv run --with pip python -m pip download google-adk \
