@@ -1,0 +1,17 @@
+```json
+[
+'filelock-3.20.3-py3-none-any.whl', 
+'fsspec-2026.1.0-py3-none-any.whl', 
+'jinja2-3.1.6-py3-none-any.whl', 
+'markupsafe-3.0.3-cp313-cp313-win_amd64.whl', 
+'mpmath-1.3.0-py3-none-any.whl', 
+'networkx-3.6.1-py3-none-any.whl', 
+'numpy-2.4.1-cp313-cp313-win_amd64.whl', 
+'pillow-12.1.0-cp313-cp313-win_amd64.whl', 
+'setuptools-80.9.0-py3-none-any.whl', 
+'sympy-1.14.0-py3-none-any.whl', 
+'torch-2.9.1+cu128-cp313-cp313-win_amd64.whl', 
+'torchvision-0.24.1+cu128-cp313-cp313-win_amd64.whl', 
+'typing_extensions-4.15.0-py3-none-any.whl'
+]
+```
