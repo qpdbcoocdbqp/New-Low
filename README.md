@@ -142,7 +142,7 @@ uv run --with pip python -m pip download google-adk \
 
 ### Jupyterlab
 
-* dependencies whl: [readme](jupyterlab-packages/README.md)
+* dependencies whl: [readme](source/jupyterlab-packages/README.md)
 
 ```sh
 uv run --with pip python -m pip download jupyterlab \
