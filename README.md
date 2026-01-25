@@ -152,3 +152,28 @@ uv run --with pip python -m pip download jupyterlab \
 --abi cp313 \
 --only-binary=:all:
 ```
+
+### Frontend
+
+* dependencies whl: [readme](source/frontend-packages/README.md)
+
+```sh
+uv run --with pip python -m pip download \
+  streamlit \
+  -d ./frontend-packages \
+  --platform win_amd64 \
+  --python-version 3.13 \
+  --abi cp313 \
+  --only-binary=:all:
+
+uv run --with pip python -m pip download \
+  ag-ui-adk ag-ui-protocol copilotkit \
+  -d ./frontend-packages \
+  --platform win_amd64 \
+  --python-version 3.13 \
+  --abi cp313 \
+  --only-binary=:all:
+```
+
+
+streamlit ag-ui-protocol copilotkit gradio

@@ -2,7 +2,9 @@ import os
 
 for pkg in  [
     'fastapi-packages',
+    'frontend-packages',
     'grpc-packages', 
+    "jupyterlab-packages",
     'lancedb-packages',
     'torch-cu128-packages', 
     'torch-packages',
