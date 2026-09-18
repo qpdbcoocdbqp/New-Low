@@ -10,3 +10,8 @@ nums = [1, 1, 1, 2, 2, 3]
 k = 2
 
 print(topKFrequent(nums, k))
+
+import pyarrow as pa
+
+df = pa.table(pa.array(nums).value_counts()).sort_by([("counts", "descending")])
+print(df["values"][:k].to_pylist())
