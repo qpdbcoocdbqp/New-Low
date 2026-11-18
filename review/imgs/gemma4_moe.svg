@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" font-family="system-ui, 'Noto Sans TC', sans-serif" font-size="13">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#555"/>
+    </marker>
+    <style>
+      .box{fill:#fff;stroke:#555;stroke-width:1.3}
+      .rt{fill:#e8f0fe;stroke:#3b6fd4;stroke-width:1.5}
+      .ex{fill:#fff4e0;stroke:#d98a00;stroke-width:1.3}
+      .sh{fill:#e6f6ea;stroke:#2e9b4f;stroke-width:1.5}
+      .hs{fill:#fde8e8;stroke:#c93c3c;stroke-width:1.5}
+      .ln{stroke:#555;stroke-width:1.4;fill:none;marker-end:url(#a)}
+      .dashA{stroke:#999;stroke-width:1;stroke-dasharray:4 3;fill:none;marker-end:url(#a)}
+      .dash{stroke:#999;stroke-width:1;stroke-dasharray:4 3;fill:none}
+      .t{fill:#222} .s{fill:#666;font-size:11.5px} .h{font-weight:700;font-size:15px;fill:#222}
+    </style>
+  </defs>
+  <rect width="1000" height="700" fill="#fafafa"/>
+  <text x="500" y="30" text-anchor="middle" class="h" font-size="19">Gemma 4 26B-A4B 的 MoE 層（dense MLP 與 MoE 並聯）</text>
+  <text x="110" y="62" text-anchor="middle" class="h">一個 Transformer block</text>
+  <rect x="30" y="75" width="160" height="40" rx="6" class="box"/>  <text x="110" y="100" text-anchor="middle" class="t">輸入 x（殘差流）</text>
+  <rect x="30" y="145" width="160" height="50" rx="6" class="box"/>  <text x="110" y="166" text-anchor="middle" class="t">Attention</text>
+  <text x="110" y="183" text-anchor="middle" class="s">（本圖不展開）</text>
+  <rect x="30" y="225" width="160" height="50" rx="6" class="rt"/>  <text x="110" y="247" text-anchor="middle" class="t" font-weight="700">MoE FFN</text>
+  <text x="110" y="264" text-anchor="middle" class="s">← 右側展開</text>
+  <rect x="30" y="305" width="160" height="40" rx="6" class="box"/>  <text x="110" y="330" text-anchor="middle" class="t">輸出</text>
+  <path d="M110 115V143M110 195V223M110 275V303" class="ln"/>
+  <text x="110" y="378" text-anchor="middle" class="s">30 層、hidden 2816</text>
+  <text x="110" y="394" text-anchor="middle" class="s">注意力 5:1 local/global</text>
+  <path d="M190 250H245" class="dash"/>
+  <rect x="235" y="55" width="745" height="380" rx="10" fill="none" stroke="#3b6fd4" stroke-dasharray="6 4"/>
+  <rect x="260" y="85" width="170" height="38" rx="6" class="box"/>  <text x="345" y="109" text-anchor="middle" class="t">token 向量 x</text>
+  <rect x="260" y="160" width="170" height="75" rx="6" class="rt"/>  <text x="345" y="182" text-anchor="middle" class="t" font-weight="700">Router</text>
+  <text x="345" y="201" text-anchor="middle" class="s">RMSNorm → 縮放 → 線性層</text>
+  <text x="345" y="216" text-anchor="middle" class="s">softmax 作用於全部 128 個</text>
+  <path d="M345 123V158" class="ln"/>
+  <rect x="260" y="265" width="170" height="68" rx="6" class="rt"/>  <text x="345" y="285" text-anchor="middle" class="t" font-weight="700">top-k 選擇（k = 8）</text>
+  <text x="345" y="303" text-anchor="middle" class="s">選中權重重新歸一化</text>
+  <text x="345" y="318" text-anchor="middle" class="s">再乘 per-expert scale</text>
+  <path d="M345 235V263" class="ln"/>
+  <path d="M430 295H450V118H468" class="ln"/>
+  <text x="700" y="82" text-anchor="middle" class="h" font-size="13">Routed experts：128 個（✓ = 被選中）</text>
+  <rect x="470" y="95" width="75" height="46" rx="5" class="ex"/>  <text x="507.5" y="123" text-anchor="middle" class="t">E1</text>
+  <rect x="553" y="95" width="75" height="46" rx="5" class="ex" stroke-width="3"/>  <text x="590.5" y="123" text-anchor="middle" class="t">E2 ✓</text>
+  <rect x="636" y="95" width="75" height="46" rx="5" class="ex"/>  <text x="673.5" y="123" text-anchor="middle" class="t">E3</text>
+  <text x="724" y="123" text-anchor="start" class="t">…</text>
+  <rect x="749" y="95" width="75" height="46" rx="5" class="ex" stroke-width="3"/>  <text x="786.5" y="123" text-anchor="middle" class="t">E127 ✓</text>
+  <rect x="832" y="95" width="75" height="46" rx="5" class="ex"/>  <text x="869.5" y="123" text-anchor="middle" class="t">E128</text>
+  <path d="M700 141V183" class="ln"/>
+  <rect x="470" y="185" width="460" height="118" rx="8" class="box"/>  <text x="700" y="205" text-anchor="middle" class="h" font-size="13">每個 expert：gated FFN（只計算被選中的 8 個）</text>
+  <text x="700" y="245" text-anchor="middle" class="s">中間維度 704（moe_intermediate_size）</text>
+  <text x="700" y="263" text-anchor="middle" class="s">GELU(tanh)(gate) · up → down；gate、up 為融合投影</text>
+  <text x="700" y="281" text-anchor="middle" class="s">expert 輸出經 post_feedforward_layernorm_2</text>
+  <rect x="470" y="320" width="215" height="55" rx="6" class="sh"/>  <text x="577" y="343" text-anchor="middle" class="t" font-weight="700">Dense MLP</text>
+  <text x="577" y="362" text-anchor="middle" class="s">每個 token 都經過；中間維度 2112</text>
+  <path d="M260 104H248V347H468" class="dashA"/>
+  <path d="M685 347H796" class="ln"/>
+  <path d="M820 303V323" class="ln"/>
+  <circle cx="820" cy="347" r="22" class="box"/>  <text x="820" y="354" text-anchor="middle" class="t" font-size="20">Σ</text>
+  <path d="M842 347H872" class="ln"/>
+  <text x="878" y="351" text-anchor="start" class="t">+ 殘差</text>
+  <rect x="260" y="385" width="700" height="38" rx="6" fill="#fff" stroke="#bbb"/>  <text x="610" y="402" text-anchor="middle" class="t">兩條分支各自做 post-norm 後相加，再經 post_feedforward_layernorm，最後加殘差</text>
+  <text x="610" y="417" text-anchor="middle" class="s">MoE 分支的輸入取自 MLP 之前的殘差（modeling_gemma4.py）</text>
+  <text x="500" y="470" text-anchor="middle" class="h" font-size="16">Router 與注意力配置</text>
+  <rect x="40" y="485" width="440" height="185" rx="8" class="rt"/>  <text x="260" y="510" text-anchor="middle" class="h">Router（Gemma4TextRouter）</text>
+  <text x="60" y="545" text-anchor="start" class="t">1. 打分：norm(x)·scale → 線性層（無 bias）</text>
+  <text x="60" y="570" text-anchor="start" class="s">2. softmax 作用於全部 128 個 expert（fp32）</text>
+  <text x="60" y="595" text-anchor="start" class="s">3. top-8 後權重和歸一化為 1，再乘 per_expert_scale</text>
+  <text x="60" y="655" text-anchor="start" class="t" font-weight="700">x → softmax → top-8 → 歸一化 → ×scale</text>
+  <rect x="520" y="485" width="440" height="185" rx="8" class="box"/>  <text x="740" y="510" text-anchor="middle" class="h">注意力：5:1 local / global</text>
+  <text x="540" y="545" text-anchor="start" class="t">1. 30 層：每 5 層 sliding 後接 1 層 full</text>
+  <text x="540" y="570" text-anchor="start" class="s">2. full attention 在第 6、12、18、24、30 層</text>
+  <text x="540" y="595" text-anchor="start" class="s">3. sliding window = 1024（本圖不展開 attention）</text>
+  <text x="540" y="655" text-anchor="start" class="t" font-weight="700">sliding ×5 → full ×1，重複 5 次</text>
+  <text x="500" y="692" text-anchor="middle" class="s">來源：google/gemma-4-26B-A4B 的 config.json（128 experts、top-8、704、2112、30 層）；transformers v5.23.0 modeling_gemma4.py</text>
+</svg>
